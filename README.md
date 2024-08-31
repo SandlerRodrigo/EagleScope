@@ -1,7 +1,7 @@
 
 # EagleScope
 
-<a target="blank" >https://www.figma.com/design/sEnefn8dGWWzmQUmchb916/Hackatona2024?node-id=0-1</a>
+<a href="https://www.figma.com/design/sEnefn8dGWWzmQUmchb916/Hackatona2024?node-id=0-1" target="_blank">FIGMA</a>
 
 EagleScope is a comprehensive project that consists of both backend and frontend components, designed to map and optimize drone routes for search and rescue missions. This project includes a web interface for interacting with the system and a backend API for processing route calculations and other related functionalities.
 
