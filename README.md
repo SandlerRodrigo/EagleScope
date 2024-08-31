@@ -1,6 +1,8 @@
 
 # EagleScope
 
+https://www.figma.com/design/sEnefn8dGWWzmQUmchb916/Hackatona2024?node-id=0-1
+
 EagleScope is a comprehensive project that consists of both backend and frontend components, designed to map and optimize drone routes for search and rescue missions. This project includes a web interface for interacting with the system and a backend API for processing route calculations and other related functionalities.
 
 ## Project Structure
@@ -80,7 +82,7 @@ The frontend is built with React and TypeScript, providing a modern and responsi
    npm run dev
    ```
 
-4. Access the application at `http://localhost:5173`.
+4. Access the application at `http://localhost:8080`.
 
 # Real-Time Person Detection with OpenCV, MediaPipe, and Upload to Amazon S3
 
