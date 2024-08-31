@@ -3,6 +3,7 @@ from cvzone.PoseModule import PoseDetector
 import time
 import boto3
 import os
+import requests  # Importar a biblioteca requests
 
 # Configurar boto3 para usar o cliente S3
 s3_client = boto3.client('s3', region_name='us-east-2')  # Substitua 'your-region' pela região correta
@@ -44,6 +45,20 @@ while True:
                 ExpiresIn=3600  # URL expira em 1 hora
             )
             print(f'URL for {filename}: {url}')
+
+            # Dados a serem enviados no POST
+            data = {
+                "coordinate": "-30.034647, -51.217658",
+                "image": url
+            }
+
+            # Fazer POST para a rota store-data
+            response = requests.post('http://localhost:8080/store-data', json=data)
+            if response.status_code == 200:
+                print(f'Successfully sent data to /store-data: {data}')
+            else:
+                print(f'Failed to send data to /store-data: {response.status_code}, {response.text}')
+
         except Exception as e:
             print(f'Error uploading {filename}: {e}')
 
