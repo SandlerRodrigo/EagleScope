@@ -1,7 +1,7 @@
   export const collaborators_data = [
   {
     bairro: "Sarandi",
-    pedidos: 68,
+    pedidos: 42,
   },
   {
     bairro: "Farrapos",
@@ -9,7 +9,7 @@
   },
   {
     bairro: "Humaitá",
-    pedidos: 4,
+    pedidos: 22,
   },
   {
     bairro: "Menino Deus",
@@ -17,11 +17,11 @@
   },
     {
     bairro: "Cidade Baixa",
-    pedidos: 2,
+    pedidos: 15,
   },
   {
     bairro: "Floresta",
-    pedidos: 5,
+    pedidos: 17,
   },
   {
     bairro: "Ponta Grossa",
@@ -33,11 +33,11 @@
   },
     {
     bairro: "Ipanema",
-    pedidos: 2,
+    pedidos: 20,
   },
   {
     bairro: "Jardim Isabel",
-    pedidos: 1,
+    pedidos: 12,
   },
       {
     bairro: "Praia de Belas",

@@ -32,7 +32,7 @@ export default function Graph3() {
           interval={0}
           angle={-30}
           textAnchor="end"
-          dy={20} // Ajusta a distância vertical das labels do eixo X
+          dy={10} // Ajusta a distância vertical das labels do eixo X
         />
         <YAxis tickMargin={15} />
         <Tooltip 

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { bairros } from "../data";
 import { FaLocationCrosshairs } from "react-icons/fa6";
 import { PiDroneBold } from "react-icons/pi";
+import { RiSpeedFill } from "react-icons/ri";
 
 export interface MapProps {}
 
@@ -37,6 +38,7 @@ const Map: React.FC<MapProps> = () => {
   const [markers, setMarkers] = useState<LatLngExpression[]>([]);
   const [bestRoute, setBestRoute] = useState<LatLngExpression[]>([]);
   const [planePosition, setPlanePosition] = useState<LatLngExpression | null>(null);
+  const [speed, setSpeed] = useState<number>(50); // Slider value (0-100) represents speed (higher value = slower speed)
 
   const iconMarkup = renderToStaticMarkup(
     <MdLocationPin className="fill-primary w-8 h-8 mt-6" />
@@ -87,7 +89,7 @@ const Map: React.FC<MapProps> = () => {
 
       let newRoute: LatLngExpression[] = [];
       for (let i = 0; i < route.length - 1; i++) {
-        newRoute = newRoute.concat(interpolatePoints(route[i], route[i + 1], 80)); // Aumente o número de pontos intermediários
+        newRoute = newRoute.concat(interpolatePoints(route[i], route[i + 1], 80)); // Increase the number of intermediate points
       }
       setBestRoute(newRoute);
     } catch (error) {
@@ -102,14 +104,18 @@ const Map: React.FC<MapProps> = () => {
   useEffect(() => {
     if (bestRoute.length > 1) {
       let index = 0;
+      const maxSpeed = 100; // Maximum speed value (slider max value)
+      const minSpeed = 10;  // Minimum speed value (slider min value)
+      const normalizedSpeed = minSpeed + (maxSpeed - speed); // Invert slider value to get the speed
+
       const interval = setInterval(() => {
         setPlanePosition(bestRoute[index]);
         index = (index + 1) % bestRoute.length;
-      }, 50); // Ajuste o intervalo para um valor mais baixo, se necessário
+      }, normalizedSpeed); // Use the normalized speed
 
       return () => clearInterval(interval);
     }
-  }, [bestRoute]);
+  }, [bestRoute, speed]); // Depend on speed as well
 
   const handleClearMarkers = () => {
     setMarkers([]);
@@ -160,9 +166,27 @@ const Map: React.FC<MapProps> = () => {
         )}
         <AddMarkerOnClick onAddMarker={handleAddMarker} />
       </MapContainer>
-      <div className="flex gap-2 mt-3">
-        <button onClick={handleClearMarkers} className="btn btn-sm btn-primary mb-4">Limpar pontos</button>
-        <button onClick={calculateRoute} className="btn btn-sm border-2 border-primary bg-white mb-4">Enviar rota</button>
+      <div className="flex gap-2 mt-3 items-center justify-between">
+        <div className="flex gap-2">
+        <button onClick={handleClearMarkers} className="btn btn-sm btn-primary ">Limpar pontos</button>
+        <button onClick={calculateRoute} className="btn btn-sm border-2 border-primary bg-white">Enviar rota</button>
+        </div>
+        <div className="flex gap-2 items-center">
+          <RiSpeedFill/>
+          <div className="font-semibold">
+            Velocidade de Animação:
+          </div>
+          <input
+            id="speedSlider"
+            type="range"
+            min="10"
+            max="100"
+            step="1"
+            value={speed}
+            onChange={(e) => setSpeed(Number(e.target.value))}
+            className="w-96 accent-primary"
+          />
+        </div>
       </div>
     </div>
   );
