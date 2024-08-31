@@ -1,8 +1,9 @@
 const express = require('express');
-const { calculateRoute } = require('../controllers/routeController');
+const { calculateRoute, storeData } = require('../controllers/routeController');
 
 const router = express.Router();
 
-router.post('/', calculateRoute);
+router.post('/calculate-route', calculateRoute);
+router.post('/store-data', storeData);
 
 module.exports = router;

@@ -27,8 +27,11 @@ exports.findBestRoute = (coordinates) => {
     }
   }
 
-  // Map the best route indexes to their corresponding coordinates
-  const bestRouteCoordinates = bestRoute.map(index => coordinates[index]);
+  // Map the best route indexes to their corresponding coordinates as objects { lat, lng }
+  const bestRouteCoordinates = bestRoute.map(index => ({
+    lat: coordinates[index][0],
+    lng: coordinates[index][1]
+  }));
 
   return { bestRoute: bestRouteCoordinates, minDistance };
 };
