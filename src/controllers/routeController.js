@@ -23,7 +23,32 @@ exports.calculateRoute = (req, res) => {
   });
 };
 
-let storedData = [];
+let storedData = [
+  {
+    coordinate: "-30.034647, -51.217658",
+    image: "https://demo-creatus.s3.us-east-2.amazonaws.com/detected_person_1725100076.jpeg"
+  },
+    {
+    coordinate: "-34.034647, -51.217658",
+    image: "https://demo-creatus.s3.us-east-2.amazonaws.com/detected_person_1725099566.png"
+  },
+    {
+    coordinate: "-30.034647, -56.217658",
+    image: "https://demo-creatus.s3.us-east-2.amazonaws.com/detected_person_1725100071.jpeg"
+  },
+    {
+    coordinate: "-32.034647, -21.217658",
+    image: "https://demo-creatus.s3.us-east-2.amazonaws.com/detected_person_1725099920.jpeg"
+  },
+    {
+    coordinate: "-10.034647, -21.217658",
+    image: "https://demo-creatus.s3.us-east-2.amazonaws.com/detected_person_1725099915.jpeg"
+  },
+    {
+    coordinate: "-10.034647, -91.217658",
+    image: "https://demo-creatus.s3.us-east-2.amazonaws.com/detected_person_1725099814.png"
+  },
+];
 
 exports.storeData = (req, res) => {
   const coordinate = req.body.coordinate;
