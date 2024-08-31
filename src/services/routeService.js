@@ -27,7 +27,6 @@ exports.findBestRoute = (coordinates) => {
     }
   }
 
-  // Map the best route indexes to their corresponding coordinates as objects { lat, lng }
   const bestRouteCoordinates = bestRoute.map(index => ({
     lat: coordinates[index][0],
     lng: coordinates[index][1]
@@ -41,6 +40,6 @@ function calculateTotalDistance(route, distMatrix) {
   for (let i = 0; i < route.length - 1; i++) {
     totalDistance += distMatrix[route[i]][route[i + 1]];
   }
-  totalDistance += distMatrix[route[route.length - 1]][route[0]];  // Return to the start
+  totalDistance += distMatrix[route[route.length - 1]][route[0]];
   return totalDistance;
 }

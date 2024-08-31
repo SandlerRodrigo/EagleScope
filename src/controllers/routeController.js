@@ -23,21 +23,28 @@ exports.calculateRoute = (req, res) => {
   });
 };
 
+let storedData = [];
+
 exports.storeData = (req, res) => {
   const coordinate = req.body.coordinate;
   const image = req.body.image;
-  const data = req.body.savedData;
 
   if (!coordinate || !image) {
     return res.status(400).json({ error: 'Both image and coordinate must be present' });
   }
 
-  data.push({
+  storedData.push({
     coordinate: coordinate,
     image: image
   });
 
   res.json({
-    data: data
+    data: storedData
   });
 };
+
+exports.getData = (req, res) => {
+  res.json({
+    data: storedData
+  })
+}

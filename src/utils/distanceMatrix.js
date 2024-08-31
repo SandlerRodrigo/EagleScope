@@ -5,7 +5,7 @@ function toRadians(degrees) {
 }
 
 function haversineDistance(coord1, coord2) {
-  const R = 6371; // Radius of the Earth in kilometers
+  const R = 6371;
   const lat1 = toRadians(coord1[0]);
   const lon1 = toRadians(coord1[1]);
   const lat2 = toRadians(coord2[0]);
@@ -20,7 +20,7 @@ function haversineDistance(coord1, coord2) {
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  return R * c; // Distance in kilometers
+  return R * c;
 }
 
 exports.calculateDistanceMatrix = (coordinates) => {
