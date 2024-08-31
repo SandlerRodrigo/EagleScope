@@ -9,27 +9,27 @@ const ClientLogin = () => {
     const nav = useNavigate();
 
     const handleLogin = () => {
-        nav("/list");
+        nav("/list"); 
     }
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value);
+        setEmail(e.target.value); 
     }
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
+        setPassword(e.target.value); 
     }
 
-    return (
+    return ( 
         <div 
-        style={{backgroundSize: '100% auto'}}
+        style={{backgroundSize: '100% auto'}} 
          className="w-screen h-screen 
          flex justify-center items-center 
-         bg-login-background bg-bottom bg-auto bg-no-repeat ">
-            <LoginCard 
-            onEmailChange={handleEmailChange} 
-            onPasswordChange={handlePasswordChange}
-            onLogin={handleLogin}/>
+         bg-login-background bg-bottom bg-auto bg-no-repeat "> 
+            <LoginCard  
+            onEmailChange={handleEmailChange}   
+            onPasswordChange={handlePasswordChange} 
+            onLogin={handleLogin}/> 
         </div>
     )
-}
-
+}  
+ 
 export default ClientLogin
