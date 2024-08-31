@@ -17,7 +17,7 @@ cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)  # Largura padrão
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)  # Altura padrão
 
 last_capture_time = time.time()
-capture_interval = 5  # Intervalo mínimo entre capturas em segundos
+capture_interval = 10  # Intervalo mínimo entre capturas em segundos
 
 while True:
     success, img = cap.read()
