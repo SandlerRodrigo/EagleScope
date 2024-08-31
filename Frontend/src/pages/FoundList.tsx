@@ -26,46 +26,6 @@ const FoundList = () => {
   }, []); // Dependência vazia para garantir que o useEffect seja executado apenas uma vez
 
   return (
-    // <div className="flex">
-    //   <Sidebar selected={"list"} />
-    //   <div
-    //     className="grid-container overflow-auto shadow-lg rounded-3xl m-8"
-    //     style={{
-    //       display: "flex",
-    //       flexDirection: "column",
-    //       justifyContent: "center",
-    //       alignItems: "center",
-    //       height: "calc(100vh - 4rem)",
-    //       backgroundColor: "white",
-    //       padding: "20px",
-    //     }}
-    //   >
-    //     <h1
-    //       className="text-3xl font-bold text-center mb-4 ml-2 self-start"
-    //       style={{ color: "#333" }}
-    //     >
-    //       Pessoas localizadas
-    //     </h1>
-    //     <div
-    //       style={{
-    //         display: "flex",
-    //         flexDirection: "row",
-    //         flexWrap: "wrap",
-    //         gap: "10px",  // Espaço entre os cards
-    //         justifyContent: "center",  // Centraliza os cards
-    //         overflow: "auto"
-    //       }}
-    //     >
-    //       {data.map((item, index) => (
-    //         <Card
-    //           key={index}
-    //           coordinate={item.coordinate}
-    //           image={item.image}
-    //         />
-    //       ))}
-    //     </div>
-    //   </div>
-    // </div>
       <div className="flex flex-row h-screen">
       <Sidebar selected={"list"} />
       <div className="w-full  p-8 overflow-auto  shadow-xl m-8 rounded-xl ">

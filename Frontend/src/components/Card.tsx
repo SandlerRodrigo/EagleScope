@@ -7,7 +7,7 @@ export interface CardProps {
 
 const Card: React.FC<CardProps> = ({ coordinate, image }) => {
   return (
-    <div className="card" style={{
+    <div className="card flex-1" style={{
       padding: "20px",
       display: "flex",
       flexDirection: "column",
@@ -15,7 +15,7 @@ const Card: React.FC<CardProps> = ({ coordinate, image }) => {
       alignItems: "center",
       width:"100%",
       maxWidth: "400px", // Ajuste o tamanho máximo
-      minWidth: "200px", // Ajuste o tamanho mínimo
+      minWidth: "350px", // Ajuste o tamanho mínimo
       backgroundColor: "white",
       boxShadow: "0 6px 8px rgba(0, 0, 0, 0.1)",
       margin: "10px",

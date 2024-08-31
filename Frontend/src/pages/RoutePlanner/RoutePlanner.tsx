@@ -31,7 +31,7 @@ const RoutePlanner = () => {
               <Graph2/>
             </div>
             <div className="bg-white w-2/3 rounded-3xl h-full p-8 shadow-md  mt-8">
-              <h2 className="text-3xl  font-semibold">Pedidos de socorro por Bairro</h2>
+              <h2 className="text-3xl  font-semibold">Pessoas resgatadas por Bairro</h2>
               <Graph3/>
             </div>
           </div>
