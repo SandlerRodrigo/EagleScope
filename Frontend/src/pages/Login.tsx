@@ -9,7 +9,7 @@ const ClientLogin = () => {
     const nav = useNavigate();
 
     const handleLogin = () => {
-        nav("/list"); 
+        nav("/foundList"); 
     }
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value); 
