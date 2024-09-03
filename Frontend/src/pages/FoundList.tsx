@@ -36,12 +36,12 @@ const FoundList = () => {
     <div className="flex flex-row h-screen">
       <Sidebar selected={"list"} />
       <div className="w-full p-8 overflow-auto shadow-xl m-8 rounded-xl">
-        <div className="flex justify-between">
+        <div className="flex md:justify-between flex-wrap justify-center">
           <div className="flex gap-4 mt-1 mb-6 ml-12 items-center">
             <FaPerson className="w-10 h-10" />
             <h2 className="text-3xl font-bold">Pessoas localizadas</h2>
           </div>
-          <div className="flex gap-4 mt-1 mb-6 mr-12 items-center">
+          <div className="flex gap-4 mt-1 mb-6 md:mr-12 items-center">
             {/* Select para escolher o bairro */}
             <select
               className="border bg-white border-primary rounded-lg p-2"
