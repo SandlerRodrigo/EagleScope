@@ -1,26 +1,31 @@
 const { findBestRoute } = require('../services/routeService');
 
 exports.calculateRoute = (req, res) => {
-  const coordinates = []
+    try {
+        if (!req.body || req.body.length === 0) {
+            return res.status(400).json({ error: 'Empty or invalid request body' });
+        }
 
-  if(!req.body){
-    return res.status(400).json({error: 'Empty request'});
-  }
-  
-  req.body.forEach(coordinate => {
-    coordinates.push([coordinate["lat"], coordinate["lng"]]);
-  });
-  
-  if (!Array.isArray(coordinates)) {
-    return res.status(400).json({ error: 'Invalid coordinates' });
-  }
+        const coordinates = req.body.map(coordinate => {
+            if (!coordinate.lat || !coordinate.lng) {
+                throw new Error('Invalid coordinate format');
+            }
+            return [coordinate.lat, coordinate.lng];
+        });
 
-  const { bestRoute, minDistance } = findBestRoute(coordinates);
+        const { segmentedRoutes, totalDistance, segmentDistances } = findBestRoute(coordinates);
 
-  res.json({
-    best_route: bestRoute,
-    min_distance: minDistance
-  });
+        console.log("Returning response with segmentedRoutes totalDistance and segmentDistances");
+
+        return res.json({
+            segmentedRoutes,
+            totalDistance,
+            segmentDistances
+        });
+    } catch (error) {
+        console.error("Error in calculateRoute:", error);
+        return res.status(500).json({ error: error.message });
+    }
 };
 
 let storedData = [
