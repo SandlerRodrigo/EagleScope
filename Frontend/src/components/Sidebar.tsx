@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { RiCrosshair2Line, RiGroupLine } from "react-icons/ri";
 import { MdLogout, MdMenu } from "react-icons/md";
 import { BsGlobeAmericas } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { GrConfigure } from "react-icons/gr";
 
 export interface SidebarProps {
-  selected?: "list" | "foundList" | "";
+  selected?: "list" | "foundList" | "configFolder" | "";
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ selected }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const nav = useNavigate();
 
   const handleClick = (route: string) => {
@@ -79,6 +80,20 @@ const Sidebar: React.FC<SidebarProps> = ({ selected }) => {
             <BsGlobeAmericas
               className={`w-6 h-6 ${
                 selected === "foundList" ? "fill-white" : "fill-primary"
+              }`}
+            />
+          </div>
+          <div
+            onClick={
+              selected === "configFolder" ? undefined : () => handleClick("/configFolder")
+            }
+            className={`rounded-xl drop-shadow-lg border-gray-100 border-2 hover:scale-110 min-w-12 min-h-12 flex justify-center items-center transition-all hover:cursor-pointer ${
+              selected === "configFolder" ? "bg-primary" : "bg-white"
+            }`}
+          >
+            <GrConfigure
+              className={`w-6 h-6 ${
+                selected === "configFolder" ? "fill-white" : "fill-primary"
               }`}
             />
           </div>
