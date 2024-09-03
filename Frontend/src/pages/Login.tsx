@@ -4,29 +4,20 @@ import LoginCard from "../components/LoginCard";
 
 const ClientLogin = () => {
 
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
     const nav = useNavigate();
 
     const handleLogin = () => {
         nav("/foundList"); 
     }
-    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value); 
-    }
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value); 
-    }
-
     return ( 
-        <div 
+        <div
         style={{backgroundSize: '100% auto'}} 
          className="w-screen h-screen 
          flex justify-center items-center 
-         bg-login-background bg-bottom bg-auto bg-no-repeat "> 
+         bg-login-background bg-bottom bg-auto bg-no-repeat p-5 "> 
             <LoginCard  
-            onEmailChange={handleEmailChange}   
-            onPasswordChange={handlePasswordChange} 
+            onEmailChange={() => console.log()}   
+            onPasswordChange={() => console.log()} 
             onLogin={handleLogin}/> 
         </div>
     )
