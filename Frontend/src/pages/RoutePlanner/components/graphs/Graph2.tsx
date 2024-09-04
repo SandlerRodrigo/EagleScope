@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { PureComponent } from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, LabelProps } from 'recharts';
 
 // Reformule o conjunto de dados para o formato esperado pelo `PieChart`
 const data_pizza1 = [
@@ -10,7 +10,18 @@ const data_pizza1 = [
 const COLORS = ['#6A4D69', '#7F658C']; // Cores para os setores do gráfico
 
 const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+
+const renderCustomizedLabel = ({
+  cx, cy, midAngle, innerRadius, outerRadius, percent
+}: LabelProps & { 
+  cx: number; 
+  cy: number; 
+  midAngle: number; 
+  innerRadius: number; 
+  outerRadius: number; 
+  percent: number; 
+  index: number;
+}) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
@@ -37,7 +48,7 @@ export default class Example extends PureComponent {
             fill="#8884d8"
             dataKey="value"
           >
-            {data_pizza1.map((entry, index) => (
+            {data_pizza1.map((_, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>

@@ -1,4 +1,3 @@
-import React from "react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 
 export default function Graph3() {
@@ -36,7 +35,7 @@ export default function Graph3() {
         />
         <YAxis tickMargin={15} />
         <Tooltip 
-          formatter={(value, name) => [`${value} pessoas`, 'Bairro']} 
+          formatter={(value) => [`${value} pessoas`, 'Bairro']} 
           labelFormatter={(label) => `Bairro: ${label}`}  
         />
         <Bar

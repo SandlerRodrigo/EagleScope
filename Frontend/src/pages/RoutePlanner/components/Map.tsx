@@ -21,7 +21,11 @@ const AddMarkerOnClick = ({ onAddMarker }: { onAddMarker: (cord: LatLngExpressio
 
 const interpolatePoints = (start: LatLngExpression, end: LatLngExpression, numPoints: number): LatLngExpression[] => {
   const points: LatLngExpression[] = [];
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const [lat1, lng1] = [start.lat, start.lng];
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const [lat2, lng2] = [end.lat, end.lng];
 
   for (let i = 0; i <= numPoints; i++) {

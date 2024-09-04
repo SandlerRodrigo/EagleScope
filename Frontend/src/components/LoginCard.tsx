@@ -2,7 +2,6 @@ import { HiOutlineMail } from "react-icons/hi";
 import { HiOutlineLockClosed } from "react-icons/hi";
 import TextFieldWithIcons from "./TextFieldWithIcons";
 import { PiAirplaneTiltFill } from "react-icons/pi";
-import { TbDrone } from "react-icons/tb";
 import { RiCrosshair2Line } from "react-icons/ri";
 
 

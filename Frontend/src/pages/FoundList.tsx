@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Card from "../components/Card";
 import { FaPerson } from "react-icons/fa6";
@@ -27,9 +27,16 @@ const FoundList = () => {
 
   const options = ["", "Sarandi", "Farrapos", "Cidade Baixa", "Ipanema", "Praia de Belas", "Partenon"]; // Opções de bairros
 
+  interface DataItem {
+  coordinate: string;
+  image: string;
+  bairro: string;
+  time: string;
+}
+
   // Filtra os dados de acordo com o bairro selecionado
-  const filteredData = selectedBairro
-    ? data.filter((item) => item.bairro === selectedBairro)
+  const filteredData:DataItem[] = selectedBairro
+    ? data.filter((item: DataItem) => item.bairro === selectedBairro)
     : data;
 
   return (

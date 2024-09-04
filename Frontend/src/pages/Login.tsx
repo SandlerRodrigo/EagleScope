@@ -10,6 +10,8 @@ const ClientLogin = () => {
 
     const handleLogin = () => {
         nav("/foundList"); 
+        console.log(password)
+        console.log(email)
     }
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value); 
