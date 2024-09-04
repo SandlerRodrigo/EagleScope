@@ -1,9 +1,10 @@
 {
   "name": "eaglescope",
   "version": "1.0.0",
-  "description": "Software Engineering Hackaton 2024",
-  "main": "index.js",
+  "description": "Software Engineering Hackathon 2024",
+  "main": "src/server.js",
   "scripts": {
+    "start": "node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
