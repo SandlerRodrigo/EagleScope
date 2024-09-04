@@ -1,15 +1,25 @@
 const express = require('express');
 const cors = require('cors');
-const route = require('./routes/route');
+const path = require('path'); // Add this
 
 const app = express();
 
-// Adiciona o middleware CORS sem opções para liberar todas as origens
+// Use CORS middleware
 app.use(cors());
 
+// Parse JSON requests
 app.use(express.json());
 
-// Usa as rotas definidas no arquivo route.js
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, '../../Frontend/build')));
+
+// Routes
+const route = require('./routes/route');
 app.use('/', route);
+
+// Serve the frontend's index.html for any unmatched routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../Frontend/build', 'index.html'));
+});
 
 module.exports = app;
