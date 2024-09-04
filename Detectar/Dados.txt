@@ -1,0 +1,5 @@
+Realize o Download destes 3 arquivos para executar o Código:
+
+https://github.com/AlexeyAB/darknet/releases/download/yolov4/yolov4.weights
+https://github.com/AlexeyAB/darknet/blob/master/cfg/yolov4.cfg
+https://github.com/pjreddie/darknet/blob/master/data/coco.names
