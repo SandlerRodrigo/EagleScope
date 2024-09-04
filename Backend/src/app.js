@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // Serve the static files from the React app
-app.use(express.static(path.join(__dirname, '../../Frontend')));
+app.use(express.static(path.join(__dirname, '../../Frontend/build')));
 
 // Routes
 const route = require('./routes/route');
@@ -19,7 +19,7 @@ app.use('/', route);
 
 // Serve the frontend's index.html for any unmatched routes
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../Frontend', 'index.html'));
+    res.sendFile(path.join(__dirname, '../../Frontend/build', 'index.html'));
 });
 
 module.exports = app;
