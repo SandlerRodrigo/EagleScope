@@ -13,7 +13,6 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.2",
-    "mathjs": "^13.1.1",
-    "numpy": "^0.0.1"
+    "mathjs": "^13.1.1"
   }
 }
