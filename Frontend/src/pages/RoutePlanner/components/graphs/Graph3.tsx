@@ -1,6 +1,20 @@
+
+import { useEffect, useState } from "react"
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 
 export default function Graph3() {
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mediaQuery.matches); 
+    const handleResize = () => setIsMobile(mediaQuery.matches); 
+    mediaQuery.addEventListener('change', handleResize);
+
+    return () => mediaQuery.removeEventListener('change', handleResize); 
+  }, []);
+
   const data_coluna_pessoas_localizadas = [
     { data: 'Centro Histórico', num: 5 },
     { data: 'Bom Fim', num: 8 },
@@ -31,6 +45,7 @@ export default function Graph3() {
           interval={0}
           angle={-30}
           textAnchor="end"
+          tick={!isMobile}
           dy={10} // Ajusta a distância vertical das labels do eixo X
         />
         <YAxis tickMargin={15} />

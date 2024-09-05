@@ -128,7 +128,7 @@ const Map: React.FC<MapProps> = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative z-20">
       <MapContainer
         center={{ lat: -30.0346, lng: -51.2177 }}
         zoom={13}
@@ -170,15 +170,17 @@ const Map: React.FC<MapProps> = () => {
         )}
         <AddMarkerOnClick onAddMarker={handleAddMarker} />
       </MapContainer>
-      <div className="flex gap-2 mt-3 items-center justify-between">
+      <div className="flex gap-6 md:gap-2 mt-8 md:mt-3 items-center justify-center md:justify-between flex-wrap">
         <div className="flex gap-2">
         <button onClick={handleClearMarkers} className="btn btn-sm btn-primary ">Limpar pontos</button>
         <button onClick={calculateRoute} className="btn btn-sm border-2 border-primary bg-white">Enviar rota</button>
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex flex-col md:flex-row gap-2 items-center">
+          <div className="flex items-center gap-2 ">
           <RiSpeedFill/>
           <div className="font-semibold">
             Velocidade de Animação:
+          </div>
           </div>
           <input
             id="speedSlider"
@@ -188,7 +190,7 @@ const Map: React.FC<MapProps> = () => {
             step="1"
             value={speed}
             onChange={(e) => setSpeed(Number(e.target.value))}
-            className="w-96 accent-primary"
+            className=" w-60 md:w-96 accent-primary"
           />
         </div>
       </div>
