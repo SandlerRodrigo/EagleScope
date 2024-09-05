@@ -23,13 +23,19 @@ function useFeedbacksByPlace() {
     const feedbackMap: FeedbackMap = {};
 
     mock_data.forEach(client => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       client.history.forEach(({ feedback, date, city, cord }) => {
         if (!feedbackMap[city]) {
           feedbackMap[city] = {
             coordinates: cord,
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             feedbacks: [{ name: client.name, date, feedback }]
           };
         } else {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           feedbackMap[city].feedbacks.push({ name: client.name, date, feedback });
         }
       });

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+
+import { useEffect, useState } from "react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 import { collaborators_data } from "../../data";
 

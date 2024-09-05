@@ -8,6 +8,8 @@ const ClientLogin = () => {
 
     const handleLogin = () => {
         nav("/foundList"); 
+        console.log(password)
+        console.log(email)
     }
     return ( 
         <div
