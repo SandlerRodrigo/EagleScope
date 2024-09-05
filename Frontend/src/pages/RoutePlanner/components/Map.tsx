@@ -21,11 +21,7 @@ const AddMarkerOnClick = ({ onAddMarker }: { onAddMarker: (cord: LatLngExpressio
 
 const interpolatePoints = (start: LatLngExpression, end: LatLngExpression, numPoints: number): LatLngExpression[] => {
   const points: LatLngExpression[] = [];
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const [lat1, lng1] = [start.lat, start.lng];
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const [lat2, lng2] = [end.lat, end.lng];
 
   for (let i = 0; i <= numPoints; i++) {
@@ -41,6 +37,7 @@ const interpolatePoints = (start: LatLngExpression, end: LatLngExpression, numPo
 const Map: React.FC<MapProps> = () => {
   const [markers, setMarkers] = useState<LatLngExpression[]>([]);
   const [bestRoute, setBestRoute] = useState<LatLngExpression[]>([]);
+  const [gpxRoute, setGpxRoute] = useState([])
   const [planePosition, setPlanePosition] = useState<LatLngExpression | null>(null);
   const [speed, setSpeed] = useState<number>(50); // Slider value (0-100) represents speed (higher value = slower speed)
 
@@ -95,11 +92,46 @@ const Map: React.FC<MapProps> = () => {
       for (let i = 0; i < route.length - 1; i++) {
         newRoute = newRoute.concat(interpolatePoints(route[i], route[i + 1], 80)); // Increase the number of intermediate points
       }
-      setBestRoute(newRoute);
+      setBestRoute(newRoute)
+      setGpxRoute(route)
     } catch (error) {
       console.log(error);
     }
   };
+
+
+  function createGPXFile(points) {
+    console.log(points)
+    let gpxContent = `<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Rasbats" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www8.garmin.com/xmlschemas/GpxExtensionsv3.xsd" xmlns:opencpn="http://www.opencpn.org">
+    <rte>
+        <name>myRoute</name>`;
+    points.forEach(point => {
+        gpxContent += `
+        <rtept lat="${point.lat}" lon="${point.lng}">
+            <extensions>
+                <opencpn:viz>1</opencpn:viz>
+            </extensions>
+        </rtept>`;
+    });
+    gpxContent += `
+    </rte>
+</gpx>`;
+
+    const blob = new Blob([gpxContent], { type: 'application/gpx+xml' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'route.gpx'; 
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+}
 
   const handleAddMarker = (cord: LatLngExpression) => {
     setMarkers((prevMarkers) => [...prevMarkers, cord]);
@@ -108,18 +140,18 @@ const Map: React.FC<MapProps> = () => {
   useEffect(() => {
     if (bestRoute.length > 1) {
       let index = 0;
-      const maxSpeed = 100; // Maximum speed value (slider max value)
-      const minSpeed = 10;  // Minimum speed value (slider min value)
-      const normalizedSpeed = minSpeed + (maxSpeed - speed); // Invert slider value to get the speed
+      const maxSpeed = 100; 
+      const minSpeed = 10;  
+      const normalizedSpeed = minSpeed + (maxSpeed - speed); 
 
       const interval = setInterval(() => {
         setPlanePosition(bestRoute[index]);
         index = (index + 1) % bestRoute.length;
-      }, normalizedSpeed); // Use the normalized speed
+      }, normalizedSpeed); 
 
       return () => clearInterval(interval);
     }
-  }, [bestRoute, speed]); // Depend on speed as well
+  }, [bestRoute, speed]); 
 
   const handleClearMarkers = () => {
     setMarkers([]);
@@ -174,6 +206,13 @@ const Map: React.FC<MapProps> = () => {
         <div className="flex gap-2">
         <button onClick={handleClearMarkers} className="btn btn-sm btn-primary ">Limpar pontos</button>
         <button onClick={calculateRoute} className="btn btn-sm border-2 border-primary bg-white">Enviar rota</button>
+        <button 
+          disabled={!bestRoute.length > 0 } 
+          onClick={() => createGPXFile(gpxRoute)} 
+          className="btn btn-sm border-2 border-primary bg-white"
+        >
+          Baixar .GPX
+        </button>
         </div>
         <div className="flex flex-col md:flex-row gap-2 items-center">
           <div className="flex items-center gap-2 ">
