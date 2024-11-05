@@ -3,18 +3,20 @@
   "version": "1.0.0",
   "description": "Software Engineering Hackathon 2024",
   "main": "Backend/src/server.js",
-  "scripts": {
-    "start": "npm run frontend && npm run backend",
-    "frontend": "cd Frontend && npm run dev",
-    "backend": "cd Backend && npm start",
-    "build": "cd Frontend && npm run build && cd .. && npm run backend"
-  },
+ "scripts": {
+  "start": "concurrently \"npm run backend\" \"npm run frontend\"",
+  "frontend": "cd Frontend && npm run dev",
+  "backend": "cd Backend && npm start",
+  "build": "cd Frontend && npm run build && cd Backend && npm start",
+  "postinstall": "(cd Frontend && npm install) && (cd Backend && npm install)"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.2",
-    "mathjs": "^13.1.1"
+    "mathjs": "^13.1.1",
+    "concurrently": "^8.0.1"
   }
 }
