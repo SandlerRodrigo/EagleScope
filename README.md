@@ -4,9 +4,12 @@ EagleScope was developed during the Hackathon 2024 AGES PUCRS. The project aims 
 integrating an advanced image recognition system to identify victims in emergency situations. This system not only helps optimize rescue operations but also provides a user-friendly interface 
 and an efficient backend to handle complex route calculations. By combining real-time person detection, dynamic mapping, and cloud integration, EagleScope enhances the capabilities of 
 autonomous drones in search and rescue missions, making emergency response faster and more effective.
----
+
+
 ![Example of the App](assets/images/exampleeagle.png)
+
 ---
+
 ## 🛠️ Installation
 
 To install all dependencies for both frontend and backend, run the following command from the root directory:
